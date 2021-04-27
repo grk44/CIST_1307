@@ -1,0 +1,84 @@
+{% extends "bootstrap/base.html" %}
+
+{% block styles%}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{% endblock %}
+
+{% block scripts%}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+{% endblock %}
+{% block navbar %}
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="home.html"><img src="/images/logo1.png" alt="Movie Rentals" style="width:60px;"></a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="/customer/">Customer Services</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/staff/">Staff Services</a>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/">Administration</a>
+    </li>
+  </ul>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+<h4>Movies currently rented by you:</h4>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>UserName</th>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+
+    {% for row in rows %}
+    <tr>
+        <td>{{ row["rentedby"] }}</td>
+        <td>{{ row["title"] }}</td>
+        <td>{{ row["year"] }}</td>
+        <td>{{ row["price"] }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+</div>
+<div class="col">
+	<h4>Enter New Rental Details</h4>
+	
+	<form class="form-inline" action="{{ url_for('rentmovie')}}" method = "POST">
+		<div class="row">
+		<div class="col-sm">
+  <label for="movieID" class="mr-sm-2">Movie ID</label>
+  <input type="movieID" class="form-control mb-2 mr-sm-2" placeholder="Enter Movie ID" id="mID" name="mID">
+
+ <label for="uname" class="mr-sm-2">UserName</label>
+  <input type="uname" class="form-control mb-2 mr-sm-2" placeholder="Enter UserName" id="uname" name="uname">
+
+  
+  <button type="submit" class="btn btn-primary mb-2">Rent</button>
+</form> 
+
+	</div>
+	<div class="col">
+	<h4>Return Movie</h4>
+	
+	<form class="form-inline" action="{{ url_for('returnmovie')}}" method = "POST">
+		<div class="row">
+		<div class="col-sm">
+  <label for="movieID" class="mr-sm-2">Movie ID</label>
+  <input type="movieID" class="form-control mb-2 mr-sm-2" placeholder="Enter Movie ID" id="mID" name="mID">
+
+  
+  <button type="submit" class="btn btn-primary mb-2">Return</button>
+</form> 
+	</div>
+{% endblock %}

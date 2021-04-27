@@ -1,0 +1,83 @@
+{% extends "bootstrap/base.html" %}
+
+{% block styles%}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{% endblock %}
+
+{% block scripts%}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+{% endblock %}
+{% block navbar %}
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="home.html"><img src="/images/logo1.png" alt="Movie Rentals" style="width:60px;"></a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="/customer/">Customer Services</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/staff/">Staff Services</a>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/">Administration</a>
+    </li>
+  </ul>
+</nav>
+{% endblock %}
+{% block content %}
+<h3>Add Movie Form:</h3>
+     <form class="form-inline" action="{{ url_for('addmovie')}}" method = "POST">
+  <label for="Movie Title" class="mr-sm-2">Movie Title:</label>
+  <input type="Movie Title" class="form-control mb-2 mr-sm-2" placeholder="Enter Movie Title" id="Movie Title" name="mtitle">
+  
+  <label for="year" class="mr-sm-2">Year:</label>
+  <input type="year" class="form-control mb-2 mr-sm-2" placeholder="Enter Year" id="year" name="myear">
+  
+
+  <label for="price" class="mr-sm-2">Rental Price:</label>
+  <input type="price" class="form-control mb-2 mr-sm-2" placeholder="Enter Price" id="price" name="mprice">
+  
+  <label for="stock" class="mr-sm-2">Stock:</label>
+  <input type="stock" class="form-control mb-2 mr-sm-2" placeholder="Enter stock" id="stock" name="mstock">
+  
+  <button type="submit" class="btn btn-primary mb-2">Add Movie</button>
+
+</form> 
+<h4>Remove Movie Form:</h4>
+<form class="form-inline" action="{{ url_for('removemovie')}}" method = "POST">
+   <label for="mID" class="mr-sm-2">MovieID</label>
+  <input type="mID" class="form-control mb-2 mr-sm-2" placeholder="Enter MovieID" id="mID" name="mID">
+  
+  <button type="submit" class="btn btn-primary mb-2">Remove Movie</button>
+
+</form> 
+
+<div class="container-fluid">
+<h4>Movies Master List</h4>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>MovieID</th>
+            <th>UserName</th>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+
+    {% for row in rows %}
+    <tr>
+        <td>{{ row["movieID"] }}</td>
+        <td>{{ row["rentedby"] }}</td>
+        <td>{{ row["title"] }}</td>
+        <td>{{ row["year"] }}</td>
+        <td>{{ row["price"] }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+</div>
+{% endblock %}

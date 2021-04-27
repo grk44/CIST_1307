@@ -1,0 +1,85 @@
+{% extends "bootstrap/base.html" %}
+
+{% block styles%}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{% endblock %}
+
+{% block scripts%}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="home.html"><img src="/images/logo1.png" alt="Movie Rentals" style="width:60px;"></a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="/customer/">Customer Services</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/staff/">Staff Services</a>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/">Administration</a>
+    </li>
+  </ul>
+</nav>
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+  <h3>Administrator panel</h3>
+  <p></p>
+</div>
+
+<div class="row">
+  <div class="col-sm-5">
+    <h4>Remove Users</h4>
+    <form class="form-inline" action="{{ url_for('removeuser') }}" method = "POST">
+       <label for="userID" class="mr-sm-2">UserID:</label>
+        <input type="userID" class="form-control mb-2 mr-sm-2" placeholder="Enter UserID" id="UserID" name="uID">
+       <button type="submit" class="btn btn-primary mb-2">Remove User</button>
+    </form> 
+    <div class="container-fluid">
+<h4>Customer List</h4>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>UserID</th>
+            <th>UserName</th>            
+        </tr>
+    </thead>
+
+    {% for row in rows %}
+    <tr>
+        <td>{{ row["custID"] }}</td>
+        <td>{{ row["username"] }}</td>        
+    </tr>
+    {% endfor %}
+
+</table>
+</div>
+  </div>
+
+
+  <div class="col-sm-5">
+    <h4>Set Passwords</h4>
+    <form class="form-inline" action="{{ url_for('setpass') }}" method = "POST">
+
+       <label for="userID" class="mr-sm-2"></label>
+        <input type="userID" class="form-control mb-2 mr-sm-2" placeholder="Enter UserID" id="UserID" name="uID">
+
+        <label for="password" class="mr-sm-2"></label>
+        <input type="password" class="form-control mb-2 mr-sm-2" placeholder="Enter new Password" id="password" name="npass">
+
+       <button type="submit" class="btn btn-primary mb-2">Set Password</button>
+    </form> 
+  </div>
+</div>
+
+
+</html>
+{% endblock %}

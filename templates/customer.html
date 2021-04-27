@@ -1,0 +1,53 @@
+{% extends "bootstrap/base.html" %}
+
+{% block styles%}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{% endblock %}
+
+{% block scripts%}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#"><img src="/images/logo1.png" alt="Movie Rentals" style="width:60px;"></a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="/customer/">Customer Services</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/staff/">Staff Services</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/">Administration</a>
+    </li>
+  </ul>
+</nav>
+{% endblock %}
+
+{% block content %}
+<h3>Customer Login:</h1>
+     <form class="form-inline" action="{{ url_for('custhome')}}" method = "POST">
+  <label for="username" class="mr-sm-2">User Name:</label>
+  <input type="username" class="form-control mb-2 mr-sm-2" placeholder="Enter Username" id="username" name="userl">
+  <label for="pwd" class="mr-sm-2">Password:</label>
+  <input type="password" class="form-control mb-2 mr-sm-2" placeholder="Enter password" id="pwd" name="passl">
+  
+  <button type="submit" class="btn btn-primary mb-2">Login</button>
+</form> 
+
+<h3>Customer Registration:</h1>
+     <form class="form-inline" action="{{ url_for('custreg')}}" method = "POST">
+  <label for="username" class="mr-sm-2">User Name:</label>
+  <input type="username" class="form-control mb-2 mr-sm-2" placeholder="Enter Username" id="username" name="usera">
+  <label for="pwd" class="mr-sm-2">Password:</label>
+  <input type="password" class="form-control mb-2 mr-sm-2" placeholder="Enter password" id="pwd" name="passa">
+  
+  <button type="submit" class="btn btn-primary mb-2">Register</button>
+</form> 
+{% endblock %}
